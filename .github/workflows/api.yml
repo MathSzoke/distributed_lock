@@ -1,4 +1,4 @@
-name: LockDemo API (Windows Free 32-bit)
+name: LockDemo API
 
 on:
   push:
@@ -32,8 +32,9 @@ jobs:
           -o "${{ github.workspace }}\publish"
           -r win-x86
           --self-contained true
-          /p:PublishSingleFile=false
+          /p:PublishSingleFile=true
           /p:PublishTrimmed=false
+          /p:EnableCompressionInSingleFile=true
           /p:InvariantGlobalization=false
 
       - name: Upload artifact
