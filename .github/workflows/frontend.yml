@@ -1,4 +1,4 @@
-name: Deploy Frontend to GitHub Pages
+name: LockDemo Frontend
 
 on:
   push:
@@ -12,43 +12,40 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: LockDemo.Web
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Use Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: npm
-          cache-dependency-path: LockDemo.Web/package.json
+          node-version: "20.x"
 
       - name: Install
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Add CNAME
         run: |
+          cd ./lockdemo.web
+          npm install --no-audit --no-fund
+          npm run build
+
+      - name: Prepare Pages Artifacts
+        run: |
+          cd ./lockdemo.web
+          cp dist/index.html dist/404.html
           echo "lockdemo.mathszoke.com" > dist/CNAME
 
-      - name: Upload artifact (dist)
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: LockDemo.Web/dist
+          path: ./lockdemo.web/dist
 
   deploy:
-    needs: build
     runs-on: ubuntu-latest
+    needs: build
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
