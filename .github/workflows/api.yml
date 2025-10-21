@@ -32,9 +32,8 @@ jobs:
           -o "${{ github.workspace }}\publish"
           -r win-x86
           --self-contained true
-          /p:PublishSingleFile=true
+          /p:PublishSingleFile=false
           /p:PublishTrimmed=false
-          /p:EnableCompressionInSingleFile=true
           /p:InvariantGlobalization=false
 
       - name: Upload artifact
@@ -54,9 +53,15 @@ jobs:
           name: api-publish
           path: .\publish
 
+      - name: Put app_offline.htm
+        run: echo "Offline" > .\publish\app_offline.htm
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
           app-name: "LockDemo-Portfolio-Mathszoke"
           package: ".\\publish"
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_LOCKDEMO }}
+
+      - name: Remove app_offline.htm
+        run: powershell -Command "Remove-Item .\publish\app_offline.htm -ErrorAction SilentlyContinue"
