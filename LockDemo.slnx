@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
+  </Folder>
   <Project Path="LockDemo.ApiService/LockDemo.ApiService.csproj" />
   <Project Path="LockDemo.AppHost/LockDemo.AppHost.csproj" />
   <Project Path="LockDemo.ServiceDefaults/LockDemo.ServiceDefaults.csproj" />

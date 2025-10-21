@@ -1,7 +1,7 @@
 # 🧩 Distributed Locking Demo — Matheus Szoke
 
 <p align="center">
-  <img src="https://portfolio.mathszoke.com/assets/banner.png" alt="Distributed Locking Demo Banner" width="800"/>
+  <img src="https://lockdemo.mathszoke.com/assets/lockDemo.png" alt="Distributed Locking Demo Banner" width="800"/>
 </p>
 
 <p align="center">
@@ -40,7 +40,7 @@ The frontend visually represents two users (“João” and “Maria”) racing 
 | **Backend** | .NET Aspire 9 + Minimal APIs |
 | **Lock Providers** | Redis, Postgres (Medallion.Threading), Dapper advisory locks |
 | **Infrastructure** | Aspire Orchestration (AppHost) + Redis + Postgres |
-| **Language** | C# + TypeScript |
+| **Language** | C# |
 
 ---
 
@@ -93,7 +93,7 @@ The interface simulates two concurrent users executing the same process:
 
 ### Prerequisites
 - .NET 9 SDK  
-- Node.js (v18+)  
+- Node.js (v19+)  
 - Redis and PostgreSQL (handled automatically via Aspire)
 
 ### Run via Aspire
@@ -124,5 +124,5 @@ Aspire will:
 ---
 
 <p align="center">
-  <sub>Made with ⚙️ & 💚 by <strong>Matheus Szoke</strong></sub>
+  <sub>Made with 💚 by <strong>Matheus Szoke</strong></sub>
 </p>
