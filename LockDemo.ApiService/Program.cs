@@ -31,6 +31,8 @@ builder.Services.AddKeyedSingleton<IDistributedLockProvider>("redis-provider", (
     return new RedisDistributedSynchronizationProvider(mux.GetDatabase());
 });
 
+builder.Services.AddHostedService<WarmupService>();
+
 builder.Services.AddCors();
 builder.Services.AddSingleton<WorkSimulator>();
 builder.Services.AddSingleton<RaceCoordinator>();
