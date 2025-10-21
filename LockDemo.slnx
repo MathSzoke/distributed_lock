@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="LockDemo.ApiService/LockDemo.ApiService.csproj" />
+  <Project Path="LockDemo.AppHost/LockDemo.AppHost.csproj" />
+  <Project Path="LockDemo.ServiceDefaults/LockDemo.ServiceDefaults.csproj" />
+  <Project Path="LockDemo.Web/lockdemo.web.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+</Solution>
