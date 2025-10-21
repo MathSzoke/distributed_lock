@@ -1,4 +1,4 @@
-name: LockDemo API (Windows App Service)
+name: LockDemo API (Windows Free 32-bit)
 
 on:
   push:
@@ -25,16 +25,15 @@ jobs:
       - name: Build
         run: dotnet build .\LockDemo.ApiService\LockDemo.ApiService.csproj --configuration Release --no-restore
 
-      - name: Publish self-contained (win-x64)
+      - name: Publish self-contained (win-x86, no single-file)
         run: >
           dotnet publish .\LockDemo.ApiService\LockDemo.ApiService.csproj
           -c Release
           -o "${{ github.workspace }}\publish"
-          -r win-x64
+          -r win-x86
           --self-contained true
-          /p:PublishSingleFile=true
+          /p:PublishSingleFile=false
           /p:PublishTrimmed=false
-          /p:EnableCompressionInSingleFile=true
           /p:InvariantGlobalization=false
 
       - name: Upload artifact
