@@ -57,14 +57,12 @@ src/
  │                                     - Endpoints for distributed lock simulation
  │                                     - Implements Redis, Postgres and Dapper lock strategies
  │                                     - Includes WorkSimulator and RaceCoordinator logic
-
- ├─ Frontend/lockdemo_web/           → React interface
- │                                     - Visual simulator with Fluent UI
- │                                     - Users “João” and “Maria” move through workflow stages
- │                                     - Interactive controls: lock toggle, provider selector, timers
-
- └─ Shared/Models/                   → Shared contracts between API and UI
-                                       - RunRequest.cs / RunResult.cs
+ │                                     - Models (RunRequest, RunResult)
+ │
+ └─ Frontend/lockdemo_web/           → React interface
+                                       - Visual simulator with Fluent UI
+                                       - Users “João” and “Maria” move through workflow stages
+                                       - Interactive controls: lock toggle, provider selector, timers
 ```
 
 ---
