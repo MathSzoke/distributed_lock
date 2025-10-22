@@ -22,17 +22,8 @@ jobs:
       - name: Build
         run: dotnet build ./LockDemo.ApiService/LockDemo.ApiService.csproj --configuration Release --no-restore
 
-      - name: Publish (self-contained linux-x64)
-        run: >
-          dotnet publish ./LockDemo.ApiService/LockDemo.ApiService.csproj
-          -c Release
-          -o "$GITHUB_WORKSPACE/publish"
-          -r linux-x64
-          --self-contained true
-          /p:PublishSingleFile=false
-          /p:PublishTrimmed=false
-          /p:InvariantGlobalization=false
-          --no-build
+      - name: Publish
+        run: dotnet publish ./LockDemo.ApiService/LockDemo.ApiService.csproj -c Release -o "$GITHUB_WORKSPACE/publish" --no-build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
