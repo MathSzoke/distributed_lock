@@ -13,26 +13,16 @@ jobs:
 
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: "10.0.x"
-          include-prerelease: true
+          dotnet-version: '9.0.x'
 
       - name: Restore
-        run: dotnet restore ./LockDemo.ApiService/LockDemo.ApiService.csproj -r linux-x64
+        run: dotnet restore ./LockDemo.ApiService/LockDemo.ApiService.csproj
 
       - name: Build
-        run: dotnet build ./LockDemo.ApiService/LockDemo.ApiService.csproj --configuration Release --no-restore -r linux-x64
+        run: dotnet build ./LockDemo.ApiService/LockDemo.ApiService.csproj --configuration Release --no-restore
 
       - name: Publish
-        run:  >
-            dotnet publish ./LockDemo.ApiService/LockDemo.ApiService.csproj
-            -c Release
-            -o "$GITHUB_WORKSPACE/publish"
-            -r linux-x64
-            --self-contained true
-            /p:PublishSingleFile=true
-            /p:PublishTrimmed=false
-            /p:InvariantGlobalization=false
-            --no-build
+        run: dotnet publish ./LockDemo.ApiService/LockDemo.ApiService.csproj -c Release -o "$GITHUB_WORKSPACE/publish" --no-build
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
