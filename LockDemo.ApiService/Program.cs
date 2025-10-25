@@ -94,7 +94,7 @@ app.MapPost("/api/run", async (
         TimeSpan.FromMilliseconds(req.LockTimeoutMs),
         ct);
 
-    if (handle is null) return Results.StatusCode(409);
+    if (handle is null) return Results.Conflict(new { message = "Another process is already running, please, wait to try again."});
 
     await Task.Delay(req.WorkMs, ct);
     tracker.Mark("Done");
