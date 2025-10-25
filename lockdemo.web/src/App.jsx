@@ -163,7 +163,7 @@ export default function App() {
         const handleA = reqA
             .then(async r => {
                 const status = r.status;
-                if (status === 409) return { status, data: null };
+                if (status === 409) return { status, message: r.data.message || r.message, data: null };
                 const data = await r.json();
                 return { status, data };
             })
@@ -176,7 +176,7 @@ export default function App() {
         const handleB = reqB
             .then(async r => {
                 const status = r.status;
-                if (status === 409) return { status, data: null };
+                if (status === 409) return { status, message: r.data.message || r.message, data: null };
                 const data = await r.json();
                 return { status, data };
             })
