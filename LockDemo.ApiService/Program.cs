@@ -74,7 +74,7 @@ app.MapPost("/api/run", async (
     if (!req.UseLock)
     {
         using var busy = BusyDetector.TryEnter(req.Key);
-        if (busy is null) return Results.StatusCode(409);
+        if (busy is null) return Results.Conflict(new { message = "Another process is already running, please, wait to try again." });
         await Task.Delay(req.WorkMs, ct);
         tracker.Mark("Done");
         return Results.Ok(new RunResult

@@ -163,9 +163,9 @@ export default function App() {
         const handleA = reqA
             .then(async r => {
                 const status = r.status;
-                if (status === 409) return { status, message: r.data.message || r.message, data: null };
-                const data = await r.json();
-                return { status, data };
+                const body = await r.json().catch(() => null);
+                if (status === 409) return { status, message: body?.message ?? "Conflict", data: null };
+                return { status, data: body };
             })
             .then(res => {
                 aDone = true;
@@ -176,9 +176,9 @@ export default function App() {
         const handleB = reqB
             .then(async r => {
                 const status = r.status;
-                if (status === 409) return { status, message: r.data.message || r.message, data: null };
-                const data = await r.json();
-                return { status, data };
+                const body = await r.json().catch(() => null);
+                if (status === 409) return { status, message: body?.message ?? "Conflict", data: null };
+                return { status, data: body };
             })
             .then(res => {
                 bDone = true;
@@ -395,7 +395,9 @@ export default function App() {
                                 color: "#0f0",
                                 padding: 12,
                                 borderRadius: 10,
-                                overflow: "auto"
+                                overflow: "auto",
+                                width: "auto",
+                                textWrap: "auto"
                             }}
                         >
                             {JSON.stringify(resA, null, 2)}
@@ -422,7 +424,8 @@ export default function App() {
                                 padding: 12,
                                 borderRadius: 10,
                                 overflow: "auto",
-                                width: 'unset'
+                                width: 'unset',
+                                textWrap: "auto"
                             }}
                         >
                             {JSON.stringify(resB, null, 2)}
