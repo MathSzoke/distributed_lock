@@ -109,7 +109,7 @@ Aspire will:
 
 ## 🌐 Live Demo (optional)
 
-> Coming soon — this project will be hosted as a public micro-demo on **mathszoke.com**.
+> 🔗 **https://lockdemo.mathszoke.com**
 
 ---
 
